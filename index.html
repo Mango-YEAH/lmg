@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>你好，泉州！</title>
+    <link rel="shortcut icon" href="/assets/timi-C8uBtCIm.ico"/>
+    <!-- least.js 2 CSS file -->
+
+ <style>
+        /* 图片放大基础样式 */
+        .ban_left_video img {
+            cursor: zoom-in; /* 鼠标悬停显示放大图标 */
+            transition: transform 0.3s ease; /* 悬停缩放动画 */
+        }
+        
+        .ban_left_video img:hover {
+            transform: scale(1.02); /* 轻微放大效果 */
+        }
+        
+        /* 放大弹窗样式 */
+        .img-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* 半透明黑色背景 */
+            display: none; /* 默认隐藏 */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* 确保在最上层 */
+            opacity: 0;
+            transition: opacity 0.3s ease; /* 淡入淡出动画 */
+        }
+        
+        .img-modal.active {
+            display: flex; /* 显示弹窗 */
+            opacity: 1;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 85vh; /* 最大高度限制为视口的85% */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* 图片阴影效果 */
+        }
+        
+        /* 关闭按钮样式 */
+        .close-btn {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s; /* 旋转动画 */
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg); /* 悬停旋转效果 */
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 禁止页面滚动 */
+        .no-scroll {
+            overflow: hidden;
+        }
+    </style>
+
+<style>
+.end3 {
+  display: flex;
+  justify-content: space-between;
+}
+.help {
+  text-align: right;
+}
+</style>
+
+   <style>
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  display: grid; /* 使用Grid布局 */
+  place-items: center; /* 绝对居中（水平+垂直） */
+  overflow: hidden;
+}
+
+.bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* 让图片在文字下方 */
+}
+
+.text-container {
+  padding: 20px;
+  max-width: 90%; /* 防止文字太宽 */
+}
+
+.art-text {
+  font-family: '春梅手书', sans-serif;
+  font-size: clamp(36px, 8vw, 100px); /* 更大字体范围：最小36px，最大100px */
+  color: #fff;
+  text-shadow: 
+    3px 3px 6px rgba(0,0,0,0.7), /* 更粗的阴影 */
+    0 0 15px rgba(255,255,255,0.4); /* 轻微发光效果 */
+  line-height: 1.1; /* 更紧凑的行高 */
+  margin: 0;
+  text-align: center; /* 文字居中 */
+  
+  /* 增强可读性 */
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(3px);
+  border-radius: 12px;
+  padding: 10px 20px;
+}
+</style>
+
+<!-- 关键点：使用<style>标签在HTML中声明字体 -->
+  <style>
+    @font-face {
+      font-family: '春梅手书';
+      src: url('/assets/%E4%B9%9F%E5%AD%97%E5%B7%A5%E5%8E%82%E6%98%A5%E6%A2%85%E6%89%8B%E4%B9%A6-CY_O8JwP.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+    <link rel="stylesheet" crossorigin href="/assets/index-CnJ3hm5h.css">
+
+    <body>
+    <!-- 头部开始 -->
+    <div class="head">
+        <div class="w">
+            <!-- 左边 -->
+            <div class="left">
+                <div class="logo fl"><a href="#"></a></div>
+                <span class="fl"></span>
+                <!-- 这里摸得时候会显示一张大图 -->
+                <div class="img fl"><a href="#"></a></div>
+                <!-- 隐藏的图 -->
+                <div class="box" style="display:none"></div>
+            </div>
+            <!-- 右边 -->
+            <div class="right fr">
+                <div class="terrace fl"></div>
+                <div class="terrace1 fl">
+                    <a href="#"> 泉州欢迎您！ </a>
+                </div>              
+            </div>
+        </div>
+    </div>
+    <!-- 大背景图  -->
+    <div class="image">
+
+        <!-- 直接在style属性中使用声明的字体 -->
+                   <!-- 艺术化文字 -->  
+                    <!-- @三明学院信息工程学院“计极向上”实践队 -->
+  <p class="art-text">
+    刺桐古城寻文脉，海丝之路续华章
+  </p>
+        <!--背景图部分的广告-->
+        <div class="nav_down_banner">
+            
+            <div class="banner w">
+                <!--大背景图中间的广告内容-->
+                <div class="banner_content">
+                    <!--左边-->
+                    <div class="cont_left">
+                        <!--轮播图部分-->
+                        <div class="lbt_cont">
+                            <!--轮播图-->
+                            <div class="lbt_item" id="lbt_item">
+                                <ul id="lbt_test" class="swiper-container">
+                                    <li ><img src="/assets/lbt_item5-B0Ife4tR.jpg" alt=""/></li>
+                                    <li><img src="/assets/lbt_item1-DxTjOUbo.jpg" alt=""/></li>
+                                    <li><img src="/assets/lbt_item2-Dz3Z1Twk.jpg" alt=""/></li>
+                                    <li><img src="/assets/lbt_item3-BXrkZILa.jpg" alt=""/></li>
+                                    <li><img src="/assets/lbt_item4-bBWLQqYY.jpg" alt=""/></li>
+                                    <li><img src="/assets/lbt_item5-B0Ife4tR.jpg" alt=""/></li>
+                                    <li><img src="/assets/lbt_item1-DxTjOUbo.jpg" alt=""/></li>
+                                </ul>
+                            </div>
+                            <!--轮播图下的索引-->
+                            <div class="lbt_index" id="lbt_index">
+                                <ul id="lbt_ul" class="swiper-container-thumbs">
+                                    <li class="current" value = "1">木偶剧院</li>
+                                    <li value="2">闽台缘博物馆</li>
+                                    <li value="3">开元寺</li>
+                                    <li value="4">黄金海岸</li>
+                                    <li value="5">西街</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--中间的新闻部分-->
+                        <div class="news" id="news">
+                            <ol id="tab">
+                                <li class="tab_item"><a href="">历史</a></li>
+                                <li class="tab_item active"><a href="">文化</a></li>
+                                <li class="tab_item"><a href="">风景</a></li>
+                                <li class="tab_item"><a href="">小吃</a></li>
+                                
+                                
+                            </ol>
+                            <div class="main">
+                                <ul>
+                                    <li class="spec_li"><a href="" class="spec_a">泉州，先秦属百越之地</a></li>
+                                    <li><a href="">唐时始筑州城</a></li>
+                                    <li><a href="">宋元海丝大港</a></li>
+                                    <li><a href="">宗教交融见证</a></li>
+                                    <li><a href="">古桥历久弥坚</a></li>
+                                    <li><a href="">南音梨园遗韵</a></li>
+                                    <li><a href="">海丝起点商繁</a></li>
+                                    <li><a href="">今朝续写新篇</a></li>
+                                </ul>
+                            </div>
+                            <div class="main selected">
+                                <ul>
+                                    <li class="spec_li"><a href="" class="spec_a">南音，千年雅乐遗响</a></li>
+                                    <li><a href="">梨园戏，古剧种活态</a></li>
+                                    <li><a href="">提线木偶，指尖演传奇</a></li>
+                                    <li><a href="">泉州南少林，禅武交融</a></li>
+                                    <li><a href="">惠安女，服饰藏文化</a></li>
+                                    <li><a href="">蟳埔女，簪花缀渔俗</a></li>
+                                    <li><a href="">泉州刻纸，刀下传非遗</a></li>
+                                    <li><a href="">砖厝燕尾，建筑载乡愁</a></li>
+                                </ul>
+                            </div>
+                            <div class="main">
+                                <ul>
+                                    <li class="spec_li"><a href="" class="spec_a">清源山色</a></li>
+                                    <li><a href="">开元古寺</a></li>
+                                    <li><a href="">西街古巷</a></li>
+                                    <li><a href="">少林古刹</a></li>
+                                    <li><a href="">洛阳古桥</a></li>
+                                    <li><a href="">云龙峡谷</a></li>
+                                    <li><a href="">刺桐大道</a></li>
+                                    <li><a href="">安平长桥</a></li>
+                                </ul>
+                            </div>
+                            <div class="main">
+                                <ul>
+                                    <li class="spec_li"><a href="" class="spec_a">肉粽饱满，料足味香</a></li>
+                                    <li><a href="">面线糊柔，鲜入肌理</a></li>
+                                    <li><a href="">土笋冻滑，奇味回甘</a></li>
+                                    <li><a href="">海蛎煎焦，鲜香交织</a></li>
+                                    <li><a href="">润饼卷脆，菜香满口</a></li>
+                                    <li><a href="">姜母鸭浓，暖身入味</a></li>
+                                    <li><a href="">麻糍软糯，花生添香</a></li>
+                                    <li><a href="">四果汤清，甜爽解腻</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                   
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    
+    <!--攻略中心部分-->
+    <div class="banner w">
+        <!--攻略中心左半边-->
+        <div class="ban_left">
+            <div class="ban_left_tit">
+                <h3>经典介绍</h3>
+                <h2>点击图片放大</h2>
+                
+                
+            </div>
+            <div class="ban_left_nav">
+                <ul id="nav">
+                    <li class="nav_item " ><a href="">技艺</a></li>
+                    <li class="nav_item split"><a href="">习俗</a></li>
+                    <li class="nav_item "><a href="">风景</a></li>
+                </ul>
+            </div>
+
+            <div class="ban_left_cont selected">
+                    
+                    <div class="ban_left_video">
+                        <div class="top">
+                            <ul>
+                                <li>
+                                    <img src="/assets/video8-u5a4OZc0.jpg" alt=""/>
+                                                        
+                                    <span class="middle_cont">泥金线画制作技艺</span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video9-DMGjI7Um.jpg" alt=""/>
+                                    
+                                   
+                                    <span class="middle_cont">锡雕技艺</span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video10-sw6_qxy_.jpg" alt=""/>
+                                    
+                                    <span class="middle_cont">永春香制作技艺</span>
+                                </li>
+                                <li class="spec_li">
+                                    <img src="/assets/video11-CjbmTnJi.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont">佛像雕塑技艺</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="down">
+                            <ul>
+                                <li>
+                                    <img src="/assets/video12-DaRBeOBK.jpg" alt=""/>
+                                  
+                                    <span class="middle_cont">德化瓷烧制技艺</span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video13-Dhg0TA0p.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont">通草工艺</span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video14-ClGshwWN.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont">铁观音制作技艺</span>
+                                </li>
+                                <li class="spec_li">
+                                    <img src="/assets/video15-DHyD7bWo.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont">永春漆篮制作工艺</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <div class="ban_left_cont ">
+                   
+                    <div class="ban_left_video">
+                        <div class="top">
+                            <ul>
+                                <li>
+                                    <img src="/assets/6e95dad3cb6a3274b72244faf089842-v3Mmz6-z.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont">蟳埔女习俗</span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video1-oVVOpnGH.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont">妆糕人</span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video2-92138-pN.jpg" alt=""/>
+                                    
+                                    <span class="middle_cont">海上泼水节</span>
+                                </li>
+                                <li class="spec_li">
+                                    <img src="/assets/video3-D11C8cJW.jpg" alt=""/>
+                                    
+                                    <span class="middle_cont">安海嗦啰嗹习俗</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="down">
+                            <ul>
+                                <li>
+                                    <img src="/assets/video4-BaelgQk7.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont">陈三五娘传说</span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video5-D_MMszjx.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont">打城戏</span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video6-1EqK-cdg.jpg" alt=""/>
+                                    
+                                    <span class="middle_cont">火鼎公火鼎婆</span>
+                                </li>
+                                <li class="spec_li">
+                                    <img src="/assets/video7-BhusnjYB.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont">泉州彩扎</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <div class="ban_left_cont ">
+                   
+                    <div class="ban_left_video">
+                        <div class="top">
+                            <ul>
+                                <li>
+                                    <img src="/assets/video81--Pj6jgJC.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont"></span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video91-CFXINm4r.jpg" alt=""/>
+                                    
+                                    <span class="middle_cont"></span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video101-CJvSO4wI.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont"></span>
+                                </li>
+                                <li class="spec_li">
+                                    <img src="/assets/video111-uIfKNch9.jpg" alt=""/>
+                                    
+                                    <span class="middle_cont"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="down">
+                            <ul>
+                                <li>
+                                    <img src="/assets/video121-Ct3LSUVp.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont"></span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video131-a5e7tiTa.jpg" alt=""/>
+                                    
+                                    <span class="middle_cont"></span>
+                                </li>
+                                <li>
+                                    <img src="/assets/video141-D9fLeZfg.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont"></span>
+                                </li>
+                                <li class="spec_li">
+                                    <img src="/assets/video151-Z4cqWi7N.jpg" alt=""/>
+                                   
+                                    <span class="middle_cont"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        
+    </div>
+   
+    
+    <!--新皮肤手风琴-->
+    <div class="new_skin ">
+        <h1>实地探访</h1>
+        <div class="content">
+            <ul class="parentWrap">
+                <li class="menuGroup">
+                    <span class="groupTitle">开元寺</span>
+                    <div>
+                        <img src="/assets/skin1-D3uUesFO.png" alt="" class="left_img fl"  />
+                        <section class="right_introduce fl introduce">
+                            <h2>开元寺</h2>
+                            <p>
+                               泉州开元寺位于鲤城区西街 176 号，是福建规模最大的佛教寺院。它始建于唐垂拱二年，历史悠久。寺内建筑宏伟，中轴线上有天王殿、大雄宝殿等主要建筑，东西两侧矗立着镇国塔、仁寿塔。寺内还有飞天乐伎、藏经阁、檀樾祠等众多文物古迹，承载着丰富的历史文化内涵，2021 年被列入《世界文化遗产名录》。
+                            </p>
+                        </section>
+                    </div>
+                </li>
+                <li class="menuGroup">
+                    <span class="groupTitle">海外交通史博物馆</span>
+                    <div>
+                        <img src="/assets/skin2-mJnwy-ok.png" alt="" class="right_img fr" />
+                        <section class="left_introduce fr introduce">
+                            <h2>海外交通史博物馆</h2>
+                            <p>
+                                泉州海外交通史博物馆创建于 1959 年，是国家一级博物馆。它以古代海外交通和海上丝绸之路为主题，有开元寺馆和东湖新馆两个馆区。馆内陈列着宋代海船等众多文物，设有 “泉州湾古船陈列馆” 等多个展厅，生动再现了我国古代辉煌的海洋文化
+                            </p>
+                        </section>
+                    </div>
+                </li>
+                <li class="menuGroup">
+                    <span class="groupTitle">闽台缘博物馆</span>
+                    <div>
+                        <img src="/assets/skin3-hGE378zl.png" alt="" class="left_img fl" />
+                        <section class="right_introduce fl introduce">
+                            <h2>闽台缘博物馆</h2>
+                            <p>
+                               泉州闽台缘博物馆是国家级对台专题博物馆，位于丰泽区北清东路。馆内以 “五缘” 为脉络，通过文物、图片、多媒体等展现闽台关系。核心展品包括清代台湾地图、闽台民俗器物等，大型火药爆绘壁画《同文、同种、同根生》是标志性景观，生动诠释了两岸深厚的历史文化渊源。
+                            </p>
+                        </section>
+                    </div>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+   
+    <!-- 底部 -->
+    <div class="end">
+        <div class="w">
+            <div class="end1">
+
+                <div class="wen fl">
+                     <div class="wen1">
+            <h4 style="font-size: 18px;color: #333">详细报道请见</h4>
+            <!-- 使用a标签包裹URL，target="_blank"可在新窗口打开（可选） -->
+            <h4 style="font-size: 18px;color: #333">
+                <a href="https://h5.jp.cjn.cn/#/h5/news?informationId=4852473&sourceType=0&type=android&isDetail=0" 
+                   target="_blank">
+                    https://h5.jp.cjn.cn/#/h5/news?informationId=4852473&sourceType=0&type=android&isDetail=0
+                </a>
+            </h4>
+        </div>
+                </div>
+            </div>
+            <!-- 二块 -->
+            <div class="end2">
+                <div class="wen fl">
+  <h4 style="font-size: 18px;color: #333">踏足泉州，让每一块石板都为你讲述海丝传奇！</h4>
+  <h4 style="font-size: 18px;color: #333">泉州，宋元中国的世界海洋商贸中心，等你来读懂千年故事。</h4>
+  <h4 style="font-size: 18px;color: #333">半城烟火半城仙，泉州欢迎你来寻味人间</h4>
+  <h4 style="font-size: 18px;color: #333">品一口肉粽，听一段南音，泉州的热情已为你备好。！</h4>
+  <h4 style="font-size: 18px;color: #333">来泉州吧，让蟳埔女的花饰，为你簪上旅途的诗意。     </h4>
+  
+                </div>
+                <!--
+                    <div class="help fr">
+
+                    </div> -->
+            </div>
+
+            <div class="end3">
+                <div class="wen fl">
+                    <!-- 原有文字 -->
+                </div>
+                <div class="help fr">
+                    <h4 style="font-size: 18px; color: #333; text-align: right;">
+                    @三明学院信息工程学院“计极向上”实践队<br>
+                    宣传页面制作--谢程伟
+                    </h4>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--返回顶部图标-->
+    <div id="totop"></div>
+
+    
+    <!--js部分-->
+     <!-- 图片放大弹窗 -->
+    <div class="img-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <img id="largeImg" src="" alt="放大的图片">
+        </div>
+    </div>
+
+    <script>
+        // 创建并添加弹窗到页面
+        document.body.appendChild(document.querySelector('.img-modal'));
+
+        // 获取所有需要放大的图片（仅攻略中心部分）
+        const images = document.querySelectorAll('.ban_left_video img');
+        // 获取弹窗元素
+        const modal = document.querySelector('.img-modal');
+        // 获取放大后的图片元素
+        const largeImg = document.getElementById('largeImg');
+        // 获取关闭按钮
+        const closeBtn = document.querySelector('.close-btn');
+
+        // 为每张图片添加点击事件
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                // 设置放大图片的源为点击的图片源
+                largeImg.src = img.src;
+                // 显示弹窗
+                modal.classList.add('active');
+                // 禁止页面滚动
+                document.body.classList.add('no-scroll');
+            });
+        });
+
+        // 关闭弹窗的函数
+        function closeModal() {
+            modal.classList.remove('active');
+            // 恢复页面滚动
+            document.body.classList.remove('no-scroll');
+        }
+
+        // 关闭按钮点击事件
+        closeBtn.addEventListener('click', closeModal);
+
+        // 点击弹窗背景关闭弹窗
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // 按ESC键关闭弹窗
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
+    <script src="src/js/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/animate.js"></script>
+    <script src="js/index.js"></script>
+  
+    <!-- least.js library -->
+    <script src="src/js/libs/least/least.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.least-gallery').least();
+        });
+    </script>
+
+</body>
+</html>
